@@ -1,19 +1,34 @@
-.gallery {
-    padding: 20px;
-    text-align: center;
-}
-
 .images {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /* Set up 5 equal columns */
+    gap: 20px;  /* Space between images */
     justify-content: center;
-    gap: 10px;
 }
 
-.images img {
-    max-width: 100%;
-    max-height: 200px;
-    width: auto;
+.cat-image {
+    display: inline-block;
+    position: relative;
+}
+
+.cat-image img {
+    width: 100%;
     height: auto;
-    border-radius: 10px; /* Optional: for rounded corners on images */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+}
+
+.favorite-button.favorited {
+    color: red;
 }
