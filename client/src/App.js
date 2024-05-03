@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import CatGallery from './components/CatGallery';
-import BreedList from './components/BreedList';
-import './App.css';
+import FavoritesDropdown from './components/FavoritesDropdown';  // Assuming you have created this component
 
 function App() {
-    const [breedId, setBreedId] = useState('');
+    const [favorites, setFavorites] = useState({});
+
+    const toggleFavorite = (catId) => {
+        setFavorites(prev => ({
+            ...prev,
+            [catId]: !prev[catId]  // Toggle the favorite state correctly
+        }));
+    };
 
     return (
         <div className="App">
             <Navbar />
-            <BreedList onBreedSelect={setBreedId} />
-            <CatGallery breedId={breedId} />
+            <FavoritesDropdown favorites={favorites} />  
+            <CatGallery toggleFavorite={toggleFavorite} breedId="someBreedId" />
         </div>
     );
 }

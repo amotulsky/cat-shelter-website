@@ -1,17 +1,11 @@
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CatGallery.css';
 
-function CatGallery({ breedId }) {
+function CatGallery({ breedId, toggleFavorite }) {
     const [cats, setCats] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [favorites, setFavorites] = useState({}); // Tracks favorites
+    const [favorites, setFavorites] = useState({});
 
     useEffect(() => {
         if (!breedId) return;
@@ -20,7 +14,7 @@ function CatGallery({ breedId }) {
             try {
                 const response = await axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&limit=10`, {
                     headers: {
-                        'x-api-key': 'https://api.thecatapi.com/v1/images/search?breed_ids=${breed}&limit=10'  // Ensure you replace 'YOUR_API_KEY' with your actual API key
+                        'x-api-key': 'https://api.thecatapi.com/v1/images/search?breed_ids=${breed}&limit=10'
                     }
                 });
                 setCats(response.data);
@@ -33,13 +27,6 @@ function CatGallery({ breedId }) {
 
         fetchCats();
     }, [breedId]);
-
-    function toggleFavorite(catId) {
-        setFavorites(prev => ({
-            ...prev,
-            [catId]: !prev[catId]
-        }));
-    }
 
     return (
         <div className="gallery">
