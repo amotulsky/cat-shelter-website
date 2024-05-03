@@ -1,10 +1,11 @@
 import React from 'react';
+import './Navbar.css'; // Ensure to create this CSS file
 
 function Navbar() {
     return (
-        <nav>
+        <nav className="navbar">
             <h1>Cat Shelter</h1>
-            <ul>
+            <ul className="nav-links">
                 <li>Home</li>
                 <li>About</li>
                 <li>Contact</li>
